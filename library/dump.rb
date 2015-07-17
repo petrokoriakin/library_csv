@@ -7,9 +7,9 @@ module Library
     end 
 
     def load_from_dump_and_init
-      readers = load_readers CSV.read("dumps/readers.csv")
-      books = load_books CSV.read("dumps/books.csv")
-      readers_with_books = load_readers_with_books CSV.read("dumps/readers_with_books.csv")
+      readers = [["Ivan Testenko", 16]] # CSV.read("dumps/readers.csv")
+      books = [["War and Peace", 1400, 3280, 1996, 1828, 1910, "Leo Tolstoy"]] # CSV.read("dumps/books.csv")
+      readers_with_books = [] # CSV.read("dumps/readers_with_books.csv")
       Library::Manager.load_from_dumps readers, books, readers_with_books
     end
 

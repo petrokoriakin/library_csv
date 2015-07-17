@@ -26,12 +26,20 @@ end
 
 describe Library::Manager do
 
-#   let(:leo_tolstoy) { Library::Author.new(1828, 1910, 'Leo Tolstoy' ) }
-#   let!(:oscar_wilde) { Library::Author.new(1854, 1900, 'Oscar Wilde') }
-#   let!(:war_and_peace) { Library::PublishedBook.new(leo_tolstoy, 'War and Peace', 1400, 3280, 1996) }
-#   let!(:ivan) {Library::Reader.new('Ivan Testenko', 16)}
-#   let!(:ivan_testenko) { Library::ReaderWithBook.new(ivan, war_and_peace, 328, (DateTime.now.new_offset(0) + 2.days)) }
-#   let!(:manager) { Library::Manager.new([],[], [ivan_testenko]) }
+  let(:leo_tolstoy) { Library::Author.new(1828, 1910, 'Leo Tolstoy' ) }
+  let!(:oscar_wilde) { Library::Author.new(1854, 1900, 'Oscar Wilde') }
+  let!(:war_and_peace) { Library::PublishedBook.new('War and Peace', 1400, 3280, 1996, leo_tolstoy) }
+  let!(:ivan) {Library::Reader.new('Ivan Testenko', 16)}
+  let!(:ivan_testenko) { Library::ReaderWithBook.new(ivan, war_and_peace, 328, (DateTime.now.new_offset(0) + 2.days)) }
+  let!(:manager) { Library::Manager.new([ivan],[war_and_peace], [ivan_testenko]) }
+
+  it 'should prepare books for csv' do
+    expect(manager.prepare_books_for_csv).to eq [["War and Peace", 1400, 3280, 1996, 1828, 1910, "Leo Tolstoy"]]
+  end
+
+  it 'should prepare books for csv' do
+    expect(manager.prepare_readers_for_csv).to eq [["Ivan Testenko", 16]]
+  end
 
 #   it 'should compose reader notification' do
 #     expect(manager.reader_notification("Ivan Testenko")). to eq <<-TEXT

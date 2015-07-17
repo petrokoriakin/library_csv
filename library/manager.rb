@@ -64,6 +64,18 @@ TEXT
 
   end
 
+  def prepare_readers_for_csv
+    readers.map{|r| r.prepare_for_csv}
+  end
+
+  def prepare_books_for_csv
+    books.map{|b| b.prepare_for_csv}
+  end
+  
+  def prepare_readers_with_books_for_csv
+    readers_with_books.map{|r| r.prepare_for_csv}
+  end
+
   private
 
   def populate_statistics!
@@ -121,18 +133,6 @@ TEXT
 
   def statistics_notification_params
 
-  end
-
-  def prepare_readers_for_csv
-    readers.map{|r| r.prepare_for_csv}
-  end
-
-  def prepare_books_for_csv
-    books.map{|b| b.prepare_for_csv}
-  end
-  
-  def prepare_readers_with_books_for_csv
-    readers_with_books.map{|r| r.prepare_for_csv}
   end
 
 end

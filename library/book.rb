@@ -6,7 +6,7 @@ class Library::Book
 
   def initialize title, *author_attributes
     @author = if author_attributes.size == 1 
-      author
+      author_attributes[0]
     else
       Author.new(*author_attributes)
     end
