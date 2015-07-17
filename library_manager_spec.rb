@@ -34,7 +34,6 @@ describe Library::Manager do
   let!(:manager) { Library::Manager.new([ivan],[war_and_peace], [ivan_testenko]) }
 
   it 'should prepare books for csv' do
-    binding.pry
     expect(manager.prepare_books_for_csv).to eq [["War and Peace", 1400, 3280, 1996, 1828, 1910, "Leo Tolstoy"]]
   end
 
