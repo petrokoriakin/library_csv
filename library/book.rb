@@ -8,7 +8,7 @@ class Library::Book
     @author = if author_attributes.size == 1 
       author_attributes[0]
     else
-      Author.new(*author_attributes)
+      Library::Author.new(*author_attributes)
     end
     @title = title
   end

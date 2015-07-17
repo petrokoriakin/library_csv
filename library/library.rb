@@ -1,5 +1,6 @@
 require 'active_support/all'
 require 'pry'
+require 'csv'
 
 module Library
 

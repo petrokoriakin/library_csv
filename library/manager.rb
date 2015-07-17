@@ -10,8 +10,8 @@
 
   def self.load_from_dumps readers, books, readers_with_books
     readers_array = Library::Reader.parse_array readers
-    books_array = Library::Reader.parse_array books
-    readers_with_books_array = []# Library::Reader.parse_array readers_with_books
+    books_array = Library::PublishedBook.parse_array books
+    readers_with_books_array = Library::ReaderWithBook.parse_array readers_with_books
 
     self.new readers_array, books_array, readers_with_books_array
   end

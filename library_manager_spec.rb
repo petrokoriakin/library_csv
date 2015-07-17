@@ -34,11 +34,24 @@ describe Library::Manager do
   let!(:manager) { Library::Manager.new([ivan],[war_and_peace], [ivan_testenko]) }
 
   it 'should prepare books for csv' do
+    binding.pry
     expect(manager.prepare_books_for_csv).to eq [["War and Peace", 1400, 3280, 1996, 1828, 1910, "Leo Tolstoy"]]
   end
 
   it 'should prepare books for csv' do
     expect(manager.prepare_readers_for_csv).to eq [["Ivan Testenko", 16]]
+  end
+
+
+  it 'should prepare  readers with books for csv' do
+    expect(manager.prepare_readers_with_books_for_csv).to eq [["Ivan Testenko", 16, "War and Peace", 1400, 3280, 1996, 1828, 1910, "Leo Tolstoy", 328, (DateTime.now.new_offset(0) + 2.days).to_s]]
+  end
+
+  it 'should load itswlf from dump' do
+    manager_from_dump = Library::Dump.load_from_dump_and_init
+    expect(manager_from_dump.readers.size).to  eq  1
+    expect(manager_from_dump.books.size).to eq  1
+    expect(manager_from_dump.readers_with_books.size).to eq  1
   end
 
 #   it 'should compose reader notification' do

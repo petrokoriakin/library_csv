@@ -11,14 +11,13 @@ class Library::ReaderWithBook
   end
 
   def self.parse_array arr
-    # arr => [published_book_identifier, reader_identifier, current_page, return_date
-    arr.map do |item| self.new *item 
-    
+    arr.map do |item|
+      self.new Library::PublishedBook.new(*item[2..-3]), Library::Reader.new(*item[0..1]), arr[-2], DateTime.parse(item[-1])
     end
   end
 
   def prepare_for_csv
-    []
+    [amazing_book.prepare_for_csv, reader.prepare_for_csv, current_page, return_date.to_s].flatten
   end
 
   def time_to_finish
