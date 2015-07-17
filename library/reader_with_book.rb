@@ -8,6 +8,17 @@ class Library::ReaderWithBook
     @current_page = current_page
   end
 
+  def self.parse_array arr
+    # arr => [published_book_identifier, reader_identifier, current_page, return_date
+    arr.map do |item| self.new *item 
+    
+    end
+  end
+
+  def prepare_for_csv
+    []
+  end
+
   def time_to_finish
     ((amazing_book.pages_quantity - current_page) / reader.reading_speed).round(2)
   end

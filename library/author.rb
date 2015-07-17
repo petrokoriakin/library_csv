@@ -9,5 +9,9 @@ class Library::Author
     @year_of_death = year_of_death
     @name = name
   end
+
+  def prepare_for_csv
+    [year_of_birth, year_of_death, name]
+  end
   
 end

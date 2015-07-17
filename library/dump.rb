@@ -6,10 +6,11 @@ module Library
       @manager = manager
     end 
 
-    def load_from_dump
-      manager.load_readers CSV.read("dumps/readers.csv")
-      manager.load_books CSV.read("dumps/books.csv")
-      manager.load_readers_with_books CSV.read("dumps/readers_with_books.csv")
+    def load_from_dump_and_init
+      readers = load_readers CSV.read("dumps/readers.csv")
+      books = load_books CSV.read("dumps/books.csv")
+      readers_with_books = load_readers_with_books CSV.read("dumps/readers_with_books.csv")
+      Library::Manager.load_from_dumps readers, books, readers_with_books
     end
 
     def create_dump

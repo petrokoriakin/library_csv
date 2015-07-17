@@ -6,4 +6,12 @@ class Library::Reader
     @reading_speed = reading_speed
   end
 
+  def self.parse_array arr
+    arr.map{|item| self.new *item }
+  end
+
+  def prepare_for_csv
+    [name, reading_speed]
+  end
+
 end

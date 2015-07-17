@@ -8,6 +8,14 @@
     @books = books
   end
 
+  def self.load_from_dumps readers, books, readers_with_books
+    readers_array = Library::Reader.parse_array readers
+    books_array = Library::Reader.parse_array books
+    readers_with_books_array = []# Library::Reader.parse_array readers_with_books
+
+    self.new readers_array, books_array, readers_with_books_array
+  end
+
   def new_book author, title, price, pages_quantity, published_at
 
   end
@@ -113,6 +121,18 @@ TEXT
 
   def statistics_notification_params
 
+  end
+
+  def prepare_readers_for_csv
+    readers.map{|r| r.prepare_for_csv}
+  end
+
+  def prepare_books_for_csv
+    books.map{|b| b.prepare_for_csv}
+  end
+  
+  def prepare_readers_with_books_for_csv
+    readers_with_books.map{|r| r.prepare_for_csv}
   end
 
 end
