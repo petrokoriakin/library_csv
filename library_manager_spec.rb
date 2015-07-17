@@ -48,9 +48,9 @@ describe Library::Manager do
 
   it 'should load itswlf from dump' do
     manager_from_dump = Library::Dump.load_from_dump_and_init
-    expect(manager_from_dump.readers.size).to  eq  1
-    expect(manager_from_dump.books.size).to eq  1
-    expect(manager_from_dump.readers_with_books.size).to eq  1
+    expect(manager_from_dump.readers.size).to  eq  3
+    expect(manager_from_dump.books.size).to eq  3
+    expect(manager_from_dump.readers_with_books.size).to eq  3
   end
 
 #   it 'should compose reader notification' do
